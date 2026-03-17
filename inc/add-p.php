@@ -11,14 +11,10 @@ function remove_diacritics($text)
     return str_replace($search, $replace, $text);
 }
 
-//$su = "Tričko s dlhým rukávom a blízsko ščť";
-
 $slug = remove_diacritics(strtolower(str_replace(' ', '-',  $_POST['name'])));
 $type = trim($_POST['type']);
 
 $new_p = $database->insert('products', ['Názov' => $_POST['name'], 'Popis' => $_POST['popis'], 'Cena' => $_POST['cena'], 'slug' => $slug, 'typ' => $type]);
-
-//echo "Test ADD";
 
 if($new_p) {
     header( "Location:" . $base_url . "admin" );
