@@ -1,0 +1,84 @@
+
+:root {
+    --content-size: 1200px;
+}
+
+.panel {
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+    background-color: black;
+    color: white !important;
+    position: relative;
+    width: 100%;
+    z-index: 9;
+    top: 0;
+}
+
+.panel a {
+    color: white !important;
+}
+
+.header-inner {
+    max-width: var(--content-size);
+    margin: auto;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-inner a {
+    text-decoration: none;
+}
+
+header ul {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    list-style-type: none;
+}
+
+.logo img {
+    max-width: 50px;
+}
+
+.book-menu a {
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+    text-transform: uppercase;
+}
+
+main {
+    max-width: var(--content-size);
+    margin: auto;
+}
+
+.login {
+    min-height: 100vh;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.prihlas {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.prihlas input, .prihlas button {
+    margin: 10px;
+}
+
+form input {
+    margin-bottom: 10px;
+}
+
+#casy {
+    height: 50px;
+    margin-bottom: 10px;
+}

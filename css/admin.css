@@ -1,0 +1,63 @@
+#admin-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 10em 0;
+    height: 100vh;
+}
+
+#section-content {
+    float: left;
+    width: 86%;
+    max-width: 100%;
+    padding: 40px;
+    margin-left: 14%;
+}
+
+#admin-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 5em 10px;
+    height: 100vh;
+    width: 14%;
+    float: left;
+    background-color: black;
+    color: white;
+}
+
+main {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.panel {
+    justify-content: space-between;
+    display: flex;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    position: fixed !important;
+    width: 100%;
+    z-index: 9;
+    top: 0;
+}
+
+.parne {
+    background-color: rgb(246, 246, 246);
+}
+
+.farby-div label {
+    width: 130px;
+    padding-right: 10px;
+}
+
+
+#color-primary {
+    padding: 0px 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 0px;
+    background-color: rgb(246, 246, 246);
+}
