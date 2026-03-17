@@ -5,7 +5,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/config.php'; 
+// sem si daj načítanie configu + medoo
+require_once __DIR__ . '/config.php';     // tvoje DB údaje
+//require_once __DIR__ . '/database.php';   // kde vytváraš $database (Medoo instance)
 
 // Voliteľné helpery
 function is_logged_in(): bool {

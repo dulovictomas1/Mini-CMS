@@ -13,6 +13,7 @@ $rezTimes = [];
 
 foreach ($rez as $r) {
     $rezTimes[] = ltrim(substr($r['time'], 0, 5), "0");
+    //print_r($rezTimes);
 }
 
 $freeTimes = array_diff($times, $rezTimes);
