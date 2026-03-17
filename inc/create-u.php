@@ -7,6 +7,8 @@ $men = trim($_POST['name']);
 
 $new_u = $database->insert('users', ['user' => $men, 'pass' => $pass]);
 
+//echo "Test ADD";
+
 if($new_u) {
     header("Location:" . $base_url . "login");
     die();
