@@ -114,10 +114,7 @@ require_once __DIR__ . '/parts/header.php';
                 <td><strong>Meno:</strong></td>                  
                 <td><strong>Čas:</strong></td>                              
            
-                <?php foreach ($rezervacieDnes as $dnes) { 
-                    //$newdat = new DateTime($dat['date']);
-                    //echo '<td>' . htmlspecialchars($newdat->format('d.m.Y')) . '</td>';
-                    ?>
+                <?php foreach ($rezervacieDnes as $dnes) { ?>
 
                     <tr>
                     <td><?php echo htmlspecialchars($dnes['meno']) ?></td>

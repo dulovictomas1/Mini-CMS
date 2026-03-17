@@ -22,8 +22,6 @@ $database = new Medoo([
 	'password' => $_ENV['DB_PASS'],
 ]);
 
-//echo "TEST CONFIG";
-
 //Nastavenie base URL
 $base_url = 'http://localhost/crystal-media/';
 
