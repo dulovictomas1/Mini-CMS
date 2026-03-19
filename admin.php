@@ -50,9 +50,13 @@ require_once __DIR__ . '/parts/header.php';
                     <tr class="<?php echo parity($key) ?>">
                     <td><?php echo htmlspecialchars($pages['Názov']) ?> </td>
                     <td><?php echo substr(htmlspecialchars($pages['Popis']),0,60) ?> </td>
-                    <td><a href="prod/edit.php?type=page&id=<?php echo htmlspecialchars($pages['id']) ?> ">Upraviť</a></td>
-                    <td><a href="prod/delete.php?type=page&id=<?php echo htmlspecialchars($pages['id']) ?>">Zmazať</a></td>
-                    <td><a href="<?php echo $base_url . $pages['slug'] ?>" target="_blank">Zobraziť</a></td>
+
+                    <?php if(is_admin()) { ?>
+                        <td><a href="prod/edit.php?type=page&id=<?php echo htmlspecialchars($pages['id']) ?> ">Upraviť</a></td>
+                        <td><a href="prod/delete.php?type=page&id=<?php echo htmlspecialchars($pages['id']) ?>">Zmazať</a></td>
+                        <td><a href="<?php echo $base_url . $pages['slug'] ?>" target="_blank">Zobraziť</a></td>
+                    <?php } ?>
+
                     </tr>
                 <?php } ?>
 
@@ -88,9 +92,11 @@ require_once __DIR__ . '/parts/header.php';
                     <td><?php echo htmlspecialchars($item['Názov']) ?></td>
                     <td><?php echo htmlspecialchars($item['Cena']) ?></td>
                     <td><?php echo substr(htmlspecialchars($item['Popis']),0,60) ?></td>
-                    <td><a href="prod/edit.php?type=product&id=<?php echo htmlspecialchars($item['id']) ?>">Upraviť</a></td>
-                    <td><a href="prod/delete.php?type=product&id=<?php echo htmlspecialchars($item['id']) ?>">Zmazať</a></td>
-                    <td><a href="<?php echo $base_url . $item['slug'] ?>" target="_blank">Zobraziť</a></td>
+                    <?php if(is_admin()) { ?>
+                        <td><a href="prod/edit.php?type=product&id=<?php echo htmlspecialchars($item['id']) ?>">Upraviť</a></td>
+                        <td><a href="prod/delete.php?type=product&id=<?php echo htmlspecialchars($item['id']) ?>">Zmazať</a></td>
+                        <td><a href="<?php echo $base_url . $item['slug'] ?>" target="_blank">Zobraziť</a></td>
+                    <?php } ?>
                     </tr>
                 <?php } ?>
 
@@ -130,7 +136,10 @@ require_once __DIR__ . '/parts/header.php';
                 <td><strong>Meno:</strong></td>                  
                 <td><strong>Čas:</strong></td>                              
                 </tr>
-            <?php 
+            <?php
+            if(empty($rezervacieZajtra)) {
+                echo '<i>Zajtra nemáte žiadne rezervácie</i>';
+            } else {
 
                 foreach ($rezervacieZajtra as $zajtra) {
                     //$newdat = new DateTime($dat['date']);
@@ -140,71 +149,74 @@ require_once __DIR__ . '/parts/header.php';
                     <td><?php echo htmlspecialchars($zajtra['meno']) ?></td>
                     <td><?php echo htmlspecialchars(substr($zajtra['time'], 0, 5)) ?></td>
                     </tr>
-            <?php } ?>
+            <?php } 
+        }?>
 
         </table>
 
-        <h2 class="stranky" id="farby">
-            Nastavenie farieb
-        </h2>
-        <form action="<?php echo $base_url ?>inc/colors.php" method="post">
-            <div class="farby-div">
-                <label for="">Header background color:</label>
-                <input type="color" name="farba" id="color-primary" value="<?php 
-            
-            if(!empty($farby_test['header_color'])) {
-                echo $farby_test['header_color'];
-            } else {
-                echo '#000000';
-            }
+        <?php if(is_admin()) { ?>
 
-            ?>">
-            </div>
+            <h2 class="stranky" id="farby">
+                Nastavenie farieb
+            </h2>
+            <form action="<?php echo $base_url ?>inc/colors.php" method="post">
+                <div class="farby-div">
+                    <label for="">Header background color:</label>
+                    <input type="color" name="farba" id="color-primary" value="<?php 
+                
+                if(!empty($farby_test['header_color'])) {
+                    echo $farby_test['header_color'];
+                } else {
+                    echo '#000000';
+                }
 
-            <div class="farby-div">
-                <label for="">Text color:</label>
-                <input type="color" name="farba_text" id="color-primary" value="<?php 
-            
-            if(!empty($farby_test['text_color'])) {
-                echo $farby_test['text_color'];
-            } else {
-                echo '#000000';
-            }
+                ?>">
+                </div>
 
-            ?>">
-            </div>
+                <div class="farby-div">
+                    <label for="">Text color:</label>
+                    <input type="color" name="farba_text" id="color-primary" value="<?php 
+                
+                if(!empty($farby_test['text_color'])) {
+                    echo $farby_test['text_color'];
+                } else {
+                    echo '#000000';
+                }
 
-            <div class="farby-div">
-                <label for="">Body link color:</label>
-                <input type="color" name="farba_link" id="color-primary" value="<?php 
-            
-            if(!empty($farby_test['link_color'])) {
-                echo $farby_test['link_color'];
-            } else {
-                echo '#000000';
-            }
+                ?>">
+                </div>
 
-            ?>">
-            </div>
+                <div class="farby-div">
+                    <label for="">Body link color:</label>
+                    <input type="color" name="farba_link" id="color-primary" value="<?php 
+                
+                if(!empty($farby_test['link_color'])) {
+                    echo $farby_test['link_color'];
+                } else {
+                    echo '#000000';
+                }
 
-            <div class="farby-div">
-                <label for="">Header link color:</label>
-                <input type="color" name="farba_header_link" id="color-primary" value="<?php 
-            
-            if(!empty($farby_test['header_link_color'])) {
-                echo $farby_test['header_link_color'];
-            } else {
-                echo '#000000';
-            }
+                ?>">
+                </div>
 
-            ?>">
-            </div>
+                <div class="farby-div">
+                    <label for="">Header link color:</label>
+                    <input type="color" name="farba_header_link" id="color-primary" value="<?php 
+                
+                if(!empty($farby_test['header_link_color'])) {
+                    echo $farby_test['header_link_color'];
+                } else {
+                    echo '#000000';
+                }
+
+                ?>">
+                </div>
+                <br>
+                <button type="submit">Uložiť</button>
+            </form>
             <br>
-            <button type="submit">Uložiť</button>
-        </form>
-        <br>
-        <br>
-
+            <br>
+        <?php } ?>
 
 
 

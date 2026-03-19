@@ -10,7 +10,7 @@ if ($name === '' || $pass === '') {
 }
 
 // vytiahni usera z DB (prispôsob názov tabuľky/stĺpcov!)
-$user = $database->get('users', ['id', 'user', 'pass'], [
+$user = $database->get('users', ['id', 'user', 'pass', 'user_role'], [
     'user' => $name
 ]);
 
@@ -30,6 +30,7 @@ if (!password_verify($pass, $user['pass'])) {
 session_regenerate_id(true);
 $_SESSION['user_id'] = (int)$user['id'];
 $_SESSION['user_name'] = $user['user'];
+$_SESSION['user_role'] = $user['user_role'];
 
 header('Location:' . $base_url . 'admin');
 exit;

@@ -55,3 +55,9 @@ function parity($number) {
 		return 'neparne';
 	}
 }
+
+function is_admin() {
+	if( $_SESSION['user_role'] === 1 ) {
+		return true;
+	}
+}
