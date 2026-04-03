@@ -2,7 +2,13 @@
 require_once __DIR__ . '/../inc/boot.php';
 require_login(); // toto musí byť pred HTML
 
-$id = trim($_POST['id']);
+//$id = trim($_POST['id']);
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+
+if ($id === false) {
+    die();
+}
+
 $role = trim($_POST['role']);
 
 $user_udpdate = $database->update('users', ['user_role' => $role], ['id' => $id]);

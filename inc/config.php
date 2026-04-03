@@ -57,7 +57,36 @@ function parity($number) {
 }
 
 function is_admin() {
-	if( $_SESSION['user_role'] === 1 ) {
+	if( isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1 ) {
 		return true;
 	}
+}
+
+
+function slugy($text) {
+
+	$map = [
+        'á'=>'a','ä'=>'a','č'=>'c','ď'=>'d','é'=>'e','ě'=>'e','í'=>'i',
+        'ľ'=>'l','ĺ'=>'l','ň'=>'n','ó'=>'o','ô'=>'o','ř'=>'r','š'=>'s',
+        'ť'=>'t','ú'=>'u','ů'=>'u','ý'=>'y','ž'=>'z',
+        'Á'=>'a','Ä'=>'a','Č'=>'c','Ď'=>'d','É'=>'e','Ě'=>'e','Í'=>'i',
+        'Ľ'=>'l','Ĺ'=>'l','Ň'=>'n','Ó'=>'o','Ô'=>'o','Ř'=>'r','Š'=>'s',
+        'Ť'=>'t','Ú'=>'u','Ů'=>'u','Ý'=>'y','Ž'=>'z'
+    ];
+
+    // nahradenie diakritiky
+    $text = strtr($text, $map);
+
+    //bez diakritky
+    $text = iconv("UTF-8", "ASCII//TRANSLIT", $text);
+
+    //malé písmená
+    $text = strtolower($text);
+
+    //nahradiť špeciálne znaky
+    $text = preg_replace('/[^a-z0-9]+/', '-', $text);
+
+    $text = trim($text, '-');
+
+    return $text;
 }

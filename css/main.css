@@ -82,3 +82,17 @@ form input {
     height: 50px;
     margin-bottom: 10px;
 }
+
+
+.full-day {
+    background-color: rgba(255, 0, 0, 0.66) !important;
+    color: white !important;
+}
+
+button {
+    background-color: #a7006b;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    color: white;
+}

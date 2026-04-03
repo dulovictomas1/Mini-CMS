@@ -1,6 +1,10 @@
 RewriteEngine On
 RewriteBase /crystal-media/
 
+# Protect to acces INC folder, ale ak v tomto priečinku máme nejaké potrebné súbory ako edit, delete atď, nebudú fungovať, ideálne ak sú tam iba súbory, z ktorých ťaháme napr. funkcie
+# RewriteRule ^(inc) - [F,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]

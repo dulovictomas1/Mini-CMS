@@ -39,7 +39,7 @@ require_once __DIR__ . '/parts/header.php';
                             <td>Užívateľ s náhľadom</td>
                         <?php } ?>
                         <?php if(is_admin()) { ?>
-                            <td><a href="user-edit.php?id=<?php echo $u['id'] ?>">Upraviť rolu užívateľa</a></td>
+                            <td><a href="user-edit.php?id=<?php echo trim($u['id']) ?>">Upraviť rolu užívateľa</a></td>
                         <?php } ?>
                     </tr>
                 <?php } ?>
