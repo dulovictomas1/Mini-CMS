@@ -8,7 +8,8 @@
                 <li><a href="<?php echo $base_url ?>prod/add-product.php" class="pridat-tlac">Pridať produkt</a></li>
                 <li><a href="<?php echo $base_url ?>pages/menu-conf.php">Menu</a></li>
                 <li><a href="<?php echo $base_url ?>users.php">Užívatelia</a></li>
-            <?php } ?>
+            <?php } ?> 
+                <li><a href="<?php echo $base_url ?>datail-u.php">Detail účtu</a></li>
         </ul>
     </nav>
 </section>

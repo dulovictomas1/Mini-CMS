@@ -37,7 +37,7 @@ require_once __DIR__ . '/parts/header.php';
                     <td>
                         <form action="inc/user-conf.php" method="post">
                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($users['id']) ?>">
-                            <select name="role" id="">
+                            <select name="role" id="" class="select_users">
                                 <option value="1">Administrátor</option>
                                 <option value="3">Bez práv</option>
                             </select>

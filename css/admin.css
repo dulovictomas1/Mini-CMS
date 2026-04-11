@@ -61,3 +61,7 @@ main {
     border-radius: 0px;
     background-color: rgb(246, 246, 246);
 }
+
+.select_users {
+    margin-bottom: 10px;
+}

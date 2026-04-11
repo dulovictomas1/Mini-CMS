@@ -23,13 +23,27 @@ foreach ($plne_dni as $row) {
 }
 
 //print_r($fullDates);
-?>
 
-<?php 
+
+
+//Nastavenie časov podľa API kľúča
 
 $datum = $_GET['date'] ?? null;
 
-$times = ["09:00", "10:00", "11:00", "13:00", "14:00"];
+$api = trim($_GET['api']);
+
+
+$cas_api = $database->select('users', ['Časy'], ['api' => $api]);
+
+
+$casy = array_map(function($time) {
+    return date('H:i', strtotime(trim($time)));
+}, explode(',', $cas_api[0]['Časy']));
+
+//$nove_casy = explode(',', $cas_api[0]['Časy']);
+
+$pole1 = array_map('trim', $casy);
+
 
 $rez = $database->select('booking', ['time'], ['date' => $datum]);
 
@@ -39,9 +53,11 @@ foreach ($rez as $r) {
     $rezTimes[] = substr($r['time'], 0, 5);
 }
 
-$freeTimes = array_diff($times, $rezTimes);
+$volne_casy = array_diff($pole1, $rezTimes);
 
 ?>
+
+
 
 <main class="telo" style="padding: 10px">
     <h1>Rezervovať online</h1>
@@ -59,6 +75,7 @@ $freeTimes = array_diff($times, $rezTimes);
             echo $datum;
         } ?>" 
         min="<?php echo date('Y-m-d', strtotime('+1 day')) ?>">
+        <input type="hidden" name="api" value="<?= htmlspecialchars($api) ?>">
        
         <button type="submit">Overiť dostupnosť</button>
         
@@ -66,23 +83,24 @@ $freeTimes = array_diff($times, $rezTimes);
 
     <hr>
 
-    <?php if(empty($freeTimes)) { ?>
+    <?php if(empty($volne_casy)) { ?>
         <p>Ľutujeme, na zvolený dátum už nie sú voľné termíny, zvoľte iný termín.</p>
     <?php } else { ?>
     <?php if(!empty($datum)) { ?>
-    <form action="inc/book.php" method="post">
+    <form action="inc/book-api.php" method="post">
         <label for="">Vyberte čas</label>
         <input type="hidden" name="date" id="date2" value="<?php echo htmlspecialchars($datum) ?>" style="visibility: hidden">
         
         <select name="time" id="casy">
 
-            <?php foreach( $freeTimes as $time) { ?>
-                <option value="<?php echo htmlspecialchars($time) ?>"><?php echo htmlspecialchars($time) ?></option>
+            <?php foreach( $volne_casy as $time) { ?>
+                <option value="<?php echo trim(htmlspecialchars($time)) ?>"><?php echo trim(htmlspecialchars($time)) ?></option>
             <?php } ?>    
 
         </select>
 
         <input type="text" name="meno" id="meno" placeholder="Vaše meno a priezvisko" required>
+        <input type="hidden" name="api" value="<?= htmlspecialchars($api) ?>">
 
         <button type="submit">Rezervovať</button>
     </form>

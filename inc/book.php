@@ -25,7 +25,6 @@ if(!$d || $d->format('H:i') !== $time) {
 
 $new_time = $database->insert('booking', ['meno' => $_POST['meno']/*, 'email' => $_POST['email']*/, 'date' => $_POST['date'], 'time' => $_POST['time']]);
 
-
 if($new_time) {
     $_SESSION['rezervacia'] = [$_POST['date'], $time];
     header( "Location:" . $base_url . "rezervacia.php?status=succes" );

@@ -60,7 +60,7 @@ function pridaj() {
     const btnClose = document.getElementById('rezLbClose');
 
     function openRezervacia(){
-      iframe.src = 'http://localhost/crystal-media/rezervacia.php?embed=1'; // uprav cestu ak treba
+      iframe.src = 'http://localhost/crystal-media/rezervacia.php?api=(tu api kluc)&embed=1'; // uprav cestu ak treba
       lb.classList.add('open');
       lb.setAttribute('aria-hidden', 'false');
     }

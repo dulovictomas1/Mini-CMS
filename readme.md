@@ -15,6 +15,7 @@ The project includes an admin panel, content management, and a reservation syste
 - Integrated **Flatpickr** calendar for date selection
 - Disabled past and unavailable dates to prevent errors
 - Highlighted available and booked dates for better UX
+- API key for registered users and connection to WP using API, difference between users
 - **Database abstraction** using Medoo
 - Environment variables for secure configuration (`.env`)
 
