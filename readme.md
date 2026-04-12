@@ -1,7 +1,7 @@
-# Mini CMS & Reservation System (PHP)
+# API Reservation System (PHP) & Mini CMS
 
-This is a custom CMS and reservation system built from scratch in PHP.
-The project includes an admin panel, content management, and a reservation system with enhanced UX features.
+Lightweight PHP-based reservation system with a custom CMS and API key architecture.  
+The project simulates a real-world SaaS model where each client has their own configuration and booking logic.
 
 ---
 
@@ -15,7 +15,7 @@ The project includes an admin panel, content management, and a reservation syste
 - Integrated **Flatpickr** calendar for date selection
 - Disabled past and unavailable dates to prevent errors
 - Highlighted available and booked dates for better UX
-- API key for registered users and connection to WP using API, difference between users
+- API key for registered users and connection to Wordpress via plugin and using API, difference between users
 - **Database abstraction** using Medoo
 - Environment variables for secure configuration (`.env`)
 
