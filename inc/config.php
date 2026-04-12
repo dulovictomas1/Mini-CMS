@@ -90,3 +90,11 @@ function slugy($text) {
 
     return $text;
 }
+
+function is_api($api) {
+	global $database; 
+
+	if ($isAccount = $database->has("users", ["AND" => ['API' => $_GET['api']] ])) {
+		return true;
+	}
+}
