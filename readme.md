@@ -45,7 +45,7 @@ The project simulates a real-world SaaS model where each client has their own co
 ## How to Run
 
 1. Clone repository
-2. Create a `.env` file (example `.env.example` provided)
+2. Create a `.env` file (example `inc/.env.example` provided)
 3. Set database credentials and configuration in `.env`
 4. Setup database using schema.sql
 5. Run on local server (e.g., XAMPP, MAMP)
