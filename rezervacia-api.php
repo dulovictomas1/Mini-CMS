@@ -15,27 +15,9 @@ if (is_api($_GET['api'])) {
 
     $_SESSION['rezervacia'] = $_SESSION['rezervacia'] ?? null;
 
-    
-
-    $plne_dni = $database->select('booking', [
-        'date',
-        'total' => Medoo::raw('COUNT(*)')
-    ], [
-        'GROUP' => 'date',
-        'HAVING' => Medoo::raw('COUNT(*) >= 5')
-    ]); //SELECT date, COUNT(*) as total FROM booking GROUP BY date HAVING total >= 5
-
-    $fullDates = [];
-
-    foreach ($plne_dni as $row) {
-        $fullDates[] = $row['date'];
-    }
-
-    //print_r($fullDates);
 
 
-
-    //Nastavenie časov podľa API kľúča
+       //Nastavenie časov podľa API kľúča
 
     $datum = $_GET['date'] ?? null;
 
@@ -53,6 +35,10 @@ if (is_api($_GET['api'])) {
 
     $pole1 = array_map('trim', $casy);
 
+    $pocet_casov = count($pole1);
+
+    //print_r($pocet_casov);
+
 
     $rez = $database->select('booking', ['time'], ['date' => $datum]);
 
@@ -63,6 +49,29 @@ if (is_api($_GET['api'])) {
     }
 
     $volne_casy = array_diff($pole1, $rezTimes);
+
+
+    
+
+    $plne_dni = $database->select('booking', [
+        'date',
+        'total' => Medoo::raw('COUNT(*)')
+    ], [
+        'GROUP' => 'date',
+        'HAVING' => Medoo::raw('COUNT(*) >= '. (int)$pocet_casov)
+    ]); //SELECT date, COUNT(*) as total FROM booking GROUP BY date HAVING total >= 5
+
+    $fullDates = [];
+
+    foreach ($plne_dni as $row) {
+        $fullDates[] = $row['date'];
+    }
+
+    //print_r($fullDates);
+
+
+
+ 
 
     ?>
 
