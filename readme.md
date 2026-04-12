@@ -1,4 +1,4 @@
-# API Reservation System (PHP) & Mini CMS
+# API Reservation System & Mini CMS (PHP)
 
 Lightweight PHP-based reservation system with a custom CMS and API key architecture.  
 The project simulates a real-world SaaS model where each client has their own configuration and booking logic.
