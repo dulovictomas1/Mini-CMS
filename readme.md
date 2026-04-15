@@ -52,6 +52,19 @@ The project simulates a real-world SaaS model where each client has their own co
 
 ---
 
+## User Roles / Admin Access
+
+The system supports role-based access:
+
+1 → Admin (full access)
+3 → Viewer (limited access)
+
+By default, newly registered users are created with a viewer role.
+To test admin functionality, update the user role in the database:
+UPDATE users SET user_role = 1 WHERE id = 1;
+
+---
+
 ## Screenshots
 
 - Admin panel overview
