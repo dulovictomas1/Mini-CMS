@@ -25,6 +25,7 @@ if (is_api($_GET['api'])) {
 
 
     $cas_api = $database->select('users', ['Časy'], ['api' => $api]);
+    $id_u = $database->select('users', 'id', ['api' => $api]);
 
 
     $casy = array_map(function($time) {
@@ -33,11 +34,13 @@ if (is_api($_GET['api'])) {
 
     //$nove_casy = explode(',', $cas_api[0]['Časy']);
 
-    $pole1 = array_map('trim', $casy);
+    //print_r($casy);
 
+    $pole1 = array_map('trim', $casy);
+    
     $pocet_casov = count($pole1);
 
-    //print_r($pocet_casov);
+    
 
 
     $rez = $database->select('booking', ['time'], ['date' => $datum]);
@@ -57,6 +60,7 @@ if (is_api($_GET['api'])) {
         'date',
         'total' => Medoo::raw('COUNT(*)')
     ], [
+        'user_ID_book' => $id_u,
         'GROUP' => 'date',
         'HAVING' => Medoo::raw('COUNT(*) >= '. (int)$pocet_casov)
     ]); //SELECT date, COUNT(*) as total FROM booking GROUP BY date HAVING total >= 5

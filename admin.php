@@ -13,8 +13,8 @@ require_once __DIR__ . '/parts/header.php';
     $produkty = $database->select('products', ['id', 'Názov', 'Cena', 'Popis', 'slug'], ['typ' => 'product']);
     $stranky = $database->select('products', ['id', 'Názov', 'Popis', 'slug'], ['typ' => 'page']);
     $datumy = $database->select('booking', ['date', 'time', 'meno']);
-    $rezervacieDnes = $database->select('booking', ['time', 'meno'], ['date' => $today]);
-    $rezervacieZajtra = $database->select('booking', ['time', 'meno'], ['date' => $tomoorow, "ORDER" => ["time" => "ASC"]]);
+    $rezervacieDnes = $database->select('booking', ['time', 'meno'], ['date' => $today, "user_ID_book" => $_SESSION['user_id']]);
+    $rezervacieZajtra = $database->select('booking', ['time', 'meno'], ['date' => $tomoorow, "ORDER" => ["time" => "ASC"], "user_ID_book" => $_SESSION['user_id']]);
 
     $farby_test = $database->get('styles', ['header_color', 'text_color', 'link_color', 'header_link_color']);
 
@@ -131,16 +131,19 @@ require_once __DIR__ . '/parts/header.php';
         </table>
 
         <h5>Zajtrajšie rezervácie</h5>
-        <table class="zozonam-prod">
+            <?php
+                if(empty($rezervacieZajtra)) {
+                    echo '<i>Zajtra nemáte žiadne rezervácie</i>';
+                }
+                else {
+            ?>    
+            <table class="zozonam-prod">
             <tr>
                 <td><strong>Meno:</strong></td>                  
                 <td><strong>Čas:</strong></td>                              
                 </tr>
+             
             <?php
-            if(empty($rezervacieZajtra)) {
-                echo '<i>Zajtra nemáte žiadne rezervácie</i>';
-            } else {
-
                 foreach ($rezervacieZajtra as $zajtra) {
                     //$newdat = new DateTime($dat['date']);
                     //echo '<td>' . htmlspecialchars($newdat->format('d.m.Y')) . '</td>';
@@ -149,10 +152,29 @@ require_once __DIR__ . '/parts/header.php';
                     <td><?php echo htmlspecialchars($zajtra['meno']) ?></td>
                     <td><?php echo htmlspecialchars(substr($zajtra['time'], 0, 5)) ?></td>
                     </tr>
-            <?php } 
-        }?>
+                <?php } ?>    
+            </table>        
+        <?php } ?>
 
-        </table>
+
+        
+        <br><br>
+        <h5>Rezervácie pre ďalšie dni (vyberte si dátum)</h5>
+
+        <form action="inc/date-other.php" method="post" id="datum-other">
+            <input type="date" name="datum-other">
+            <input type="hidden" name="id-uzi" value="<?php echo trim($_SESSION['user_id']) ?>">
+            <button type="submit">Zobraziť</button>
+        </form>
+
+        <div id="loader" style="display:none;">Načítavam...</div>
+
+        <div id="vysledok" style="margin-top: 20px; border: 1px solid; padding: 10px;"></div>
+
+        <br><br>
+
+
+
 
         <?php if(is_admin()) { ?>
 
@@ -223,3 +245,6 @@ require_once __DIR__ . '/parts/header.php';
 
 </main>
 
+
+
+<?php require_once('parts/footer.php') ?>
