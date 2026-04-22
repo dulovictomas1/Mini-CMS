@@ -25,6 +25,11 @@
 
     <div>
         <?php echo $pageData['Popis'];?>
+    </div>
+    
+    
+    <div style="display: block; clear: both;">
+        
         Toto je podstránka PAGE
 
         <div class="zoznam" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em;">

@@ -29,6 +29,7 @@ require_once __DIR__ . '/parts/header.php';
     </h1>
     <hr>
 
+    <?php if(is_admin()) { ?>
     <h2 class="stranky">
         Zoznam stránok
     </h2>
@@ -64,11 +65,11 @@ require_once __DIR__ . '/parts/header.php';
         </table>
 
     </section>
+    
 
 
 
-
-
+                    
     <h2 class="produkty">
         Zoznam produktov
     </h2>
@@ -102,6 +103,8 @@ require_once __DIR__ . '/parts/header.php';
 
         </table>
     </section>
+    
+    <?php } ?>
 
     <h2 class="stranky">
         Zoznam rezervácii
