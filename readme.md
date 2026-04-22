@@ -20,17 +20,42 @@ This project simulates a simplified SaaS model where the CMS acts as the interfa
 
 ## Features
 
-- **Custom routing system** for flexible page management
-- **Admin panel** for managing pages and reservations
-- **CRUD operations** for content management
-- **Rich text editing** using TinyMCE for user-friendly content editing
-- **Reservation system**:
-- Integrated **Flatpickr** calendar for date selection
-- Disabled past and unavailable dates to prevent errors
-- Highlighted available and booked dates for better UX
-- API key for registered users and connection to Wordpress via plugin and using API, difference between users
-- **Database abstraction** using Medoo
-- Environment variables for secure configuration (`.env`)
+### Core System
+
+- Reservation system with availability control and prevention of double bookings  
+- User dashboard for managing reservations and viewing personal API key  
+- Role-based access system (Super Admin / User)  
+- API-ready structure for integration (e.g. WordPress plugin)
+
+### Custom CMS (Admin & Presentation Layer)
+
+- Dynamic page creation and content management  
+- Rich text editing with TinyMCE  
+- Separation of admin and user views  
+- Super Admin can manage website structure and presentation pages  
+
+### User Experience
+
+- Interactive calendar using Flatpickr  
+- Highlighted available and booked dates  
+- Disabled unavailable dates to prevent invalid bookings  
+- AJAX-based availability checking (no page reload)  
+- Improved form handling and feedback for better UX  
+
+### Backend & Data
+
+- PHP backend with custom routing  
+- MySQL database with relational structure  
+- SQL queries (SELECT, JOIN, GROUP BY)  
+- CRUD operations for reservations and content  
+- Data exchange between backend and frontend (JSON)
+
+### Architecture & Development
+
+- Separation of concerns (CMS vs reservation logic)  
+- Environment configuration via `.env`  
+- Modular structure (pages, parts, API layer)  
+- Iterative improvements based on real issues (bugs, UX problems)
 
 ---
 
