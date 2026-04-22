@@ -95,7 +95,7 @@ This project simulates a simplified SaaS model where the CMS acts as the interfa
 The system supports role-based access:
 
 - 1 → Admin (full access)
-- 3 → Viewer (limited access)
+- 3 → User (limited access)
 
 By default, newly registered users are created with a viewer role.
 To test admin functionality, update the user role in the database:
