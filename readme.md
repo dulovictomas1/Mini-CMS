@@ -1,7 +1,20 @@
-# API Reservation System & Mini CMS (PHP)
+# SaaS Reservation System with Custom CMS (PHP)
 
-Lightweight PHP-based reservation system with a custom CMS and API key architecture.  
-The project simulates a real-world SaaS model where each client has their own configuration and booking logic.
+This project is a lightweight SaaS-style reservation system built in PHP, combined with a custom CMS that serves as both an administrative and presentation layer.
+
+The system is designed as a full web application with two main components:
+
+- **Reservation system (core logic)** – handles booking availability, reservation validation, and database operations
+- **Custom CMS (admin & presentation layer)** – allows content management, user role control, and dynamic creation of pages used to present the system
+
+The CMS includes a role-based access system:
+
+- **Super Admin** can manage content, create new pages, and control the structure of the website
+- **Registered users** have access to their own dashboard, where they can manage reservations, view their API key, and interact with the system
+
+The application also includes asynchronous (AJAX-based) availability checking, improving user experience by providing real-time feedback without page reloads.
+
+This project simulates a simplified SaaS model where the CMS acts as the interface for presenting and managing the reservation system.
 
 ---
 
