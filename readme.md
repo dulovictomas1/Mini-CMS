@@ -97,7 +97,7 @@ The system supports role-based access:
 - 1 → Admin (full access)
 - 3 → User (limited access)
 
-By default, newly registered users are created with a viewer role.
+By default, newly registered users are created with a default role.
 To test admin functionality, update the user role in the database:
 UPDATE users SET user_role = 1 WHERE id = 1;
 
