@@ -3,7 +3,7 @@
 Plugin Name: Rezervacia Lightbox
 Description: Otvori rezervaciu v iframe lightboxe. Pre pridanie kdekoľvek na stránku použite shortcode [box-rezervacia].
 Version: 1.1.0
-Author: Tvoje meno
+Author: TD
 */
 
 if (!defined('ABSPATH')) {
@@ -84,7 +84,7 @@ function rezervacia_lightbox_settings_page() {
                             class="regular-text"
                         >
                         <!--<p class="description">
-                            Napr. https://tvoja-domena.sk/rezervacia-api.php
+                            Napr. http://localhost/crystal-media/rezervacia-api.php
                         </p>-->
                     </td>
                 </tr>
