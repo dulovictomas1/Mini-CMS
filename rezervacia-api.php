@@ -7,7 +7,7 @@ use Medoo\Medoo;
 $api = trim($_GET['api']);
 
 
-if (is_api($_GET['api'])) {
+if (is_api($_GET['api'])  && !empty($api)) {
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();

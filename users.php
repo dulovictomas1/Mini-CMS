@@ -36,7 +36,7 @@ require_once __DIR__ . '/parts/header.php';
                             <td>Administrátor</td>
                         <?php } ?>
                         <?php if($u['user_role'] === 3) { ?>
-                            <td>Užívateľ s náhľadom</td>
+                            <td>Klient</td>
                         <?php } ?>
                         <?php if(is_admin()) { ?>
                             <td><a href="user-edit.php?id=<?php echo trim($u['id']) ?>">Upraviť rolu užívateľa</a></td>
