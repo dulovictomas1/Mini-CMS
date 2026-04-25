@@ -2,10 +2,31 @@
 
 require_once('parts/header.php');
 
+use Medoo\Medoo;
+
 $api = trim($_GET['api']);
 
 
 if (is_api($_GET['api'])  && !empty($api)) {
+
+    $id_user_and_times = $database->select('users', ['id', 'Časy'], ['api' => $api]);
+
+    $pocet_casov = count(explode(",", $id_user_and_times[0]['Časy']));
+
+    $plne_dni = $database->select('booking', [
+        'date',
+        'total' => Medoo::raw('COUNT(*)')
+    ], [
+        'user_ID_book' => $id_user_and_times[0]['id'],
+        'GROUP' => 'date',
+        'HAVING' => Medoo::raw('COUNT(*) >= '. (int)$pocet_casov)
+    ]); //SELECT date, COUNT(*) as total FROM booking GROUP BY date HAVING total >= 5
+
+    $fullDates = [];
+
+    foreach ($plne_dni as $row) {
+        $fullDates[] = $row['date'];
+    }
 
 ?>
 
@@ -52,7 +73,7 @@ require_once('parts/footer.php') ?>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/sk.js"></script>
 <script>
-//const fullDates = <?php echo json_encode($fullDates); ?>;
+const fullDates = <?php echo json_encode($fullDates); ?>;
 </script>
 
 
@@ -70,9 +91,9 @@ flatpickr("#date-ajax", {
                 String(dayElem.dateObj.getMonth() + 1).padStart(2, '0') + '-' +
                 String(dayElem.dateObj.getDate()).padStart(2, '0');
 
-            /*if (fullDates.includes(date)) {
+            if (fullDates.includes(date)) {
                 dayElem.classList.add("full-day");
-            }*/
+            }
         }
     });
 
