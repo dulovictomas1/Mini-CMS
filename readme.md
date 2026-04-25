@@ -111,6 +111,24 @@ UPDATE users SET user_role = 1 WHERE id = 1;
 
 ---
 
+## Reservation System Evolution
+
+The reservation functionality was developed in multiple stages, each improving architecture and user experience:
+
+- **rezervacia.php**  
+
+  Basic version with static time selection and simple form submission. Data (name, date, time) is stored directly in the database.
+
+- **rezervacia-api.php**  
+
+  Extended version introducing API key support for clients. Reservations are linked to specific users and handled with improved backend logic.
+
+- **rezervacia-ajax.php**  
+
+  Current version using AJAX communication. The frontend sends requests to PHP endpoints, which return JSON data. Available times are dynamically loaded and rendered without page reload.
+
+---
+
 ## What I Learned
 
 - Building a CMS and reservation system from scratch
