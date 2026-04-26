@@ -22,8 +22,19 @@ $database = new Medoo([
 	'password' => $_ENV['DB_PASS'],
 ]);
 
+
 //Nastavenie base URL
 $base_url = 'http://localhost/crystal-media/';
+
+
+// nezobrazovať chyby užívateľovi - zatiaľa zakomentované pre moje účely vo vývoji
+ini_set('display_errors', 0);
+// zapnúť logovanie
+ini_set('log_errors', 1);
+// cesta k log súboru
+ini_set('error_log', dirname(__DIR__) . '/logs/php-error.log');
+// úroveň chýb (všetko)
+error_reporting(E_ALL);
 
 
 //Funkcia na paragrafy
